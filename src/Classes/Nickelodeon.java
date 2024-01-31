@@ -21,4 +21,9 @@ public class Nickelodeon extends Thread{
     private Drive drive;
     private ProjectManager pm;
     private boolean activo = true;
+    
+    public Nickelodeon(int duracionDia, int diasLanzamiento){
+        this.duracionDia = duracionDia;
+        this.diasLanzamiento = diasLanzamiento;
+    }
 }
