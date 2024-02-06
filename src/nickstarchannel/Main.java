@@ -5,21 +5,27 @@
  */
 package nickstarchannel;
 
+import Classes.Director;
+import Classes.Estudio;
 import Classes.ProjectManager;
+import Classes.Trabajador;
 
 /**
  *
  * @author SebasBD
  */
-public class NickStarChannel {
-
+public class Main {
+    public static Estudio nick = new Estudio(1000, 5);
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        ProjectManager pm = new ProjectManager(10);
-        pm.start();
+        
+        //ProjectManager pm = new ProjectManager(10);
+        //pm.start();
+       Director dm = new Director(5);
+       dm.start();
     }
     
 }
