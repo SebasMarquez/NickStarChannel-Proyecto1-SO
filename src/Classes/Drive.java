@@ -25,7 +25,7 @@ public class Drive {
     
     }
     
-    public boolean hayPartesParaCapituloNormalDisponible(){
+    public boolean hayPartesParaCapituloNormalDisponibleNick(){
         boolean proceder = true;
         
         for(ParteDrive parteCapitulo : getSeccionesDrive()){
@@ -55,7 +55,7 @@ public class Drive {
         return proceder;
     }
     
-    public boolean hayPartesParaCapituloTwistDisponible(){
+    public boolean hayPartesParaCapituloTwistDisponibleNick(){
         boolean proceder = true;
         
         for(ParteDrive parteCapitulo : getSeccionesDrive()){
@@ -80,7 +80,7 @@ public class Drive {
                     break;
                 }
             }else if(parteCapitulo.getNombreParte().equals("twist")){
-                if(parteCapitulo.getCantidadProducida() <= 0){
+                if(parteCapitulo.getCantidadProducida() <= 1){
                     proceder = false;
                     break;
                 }
@@ -89,7 +89,76 @@ public class Drive {
         return proceder;
     }
     
-    public void producirCapituloNormal(){
+    
+    public boolean hayPartesParaCapituloNormalDisponibleStarChannel(){
+        boolean proceder = true;
+        
+        for(ParteDrive parteCapitulo : getSeccionesDrive()){
+            if(parteCapitulo.getNombreParte().equals("guion")){
+                if(parteCapitulo.getCantidadProducida() <= 1){
+                    proceder = false;
+                    break;
+                }
+            }else if(parteCapitulo.getNombreParte().equals("diseño")){
+                if(parteCapitulo.getCantidadProducida() <= 2){
+                    proceder = false;
+                    break;
+                }
+            }else if(parteCapitulo.getNombreParte().equals("animador")){
+                if(parteCapitulo.getCantidadProducida() <= 3){
+                    proceder = false;
+                    break;
+                }
+            }else if(parteCapitulo.getNombreParte().equals("doblaje")){
+                if(parteCapitulo.getCantidadProducida() <= 5){
+                    proceder = false;
+                    break;
+                }
+            }
+        }
+        
+        return proceder;
+    }
+    
+    public boolean hayPartesParaCapituloTwistDisponibleStarChannel(){
+        boolean proceder = true;
+        
+        for(ParteDrive parteCapitulo : getSeccionesDrive()){
+            if(parteCapitulo.getNombreParte().equals("guion")){
+                if(parteCapitulo.getCantidadProducida() <= 1){
+                    proceder = false;
+                    break;
+                }
+            }else if(parteCapitulo.getNombreParte().equals("diseño")){
+                if(parteCapitulo.getCantidadProducida() <= 2){
+                    proceder = false;
+                    break;
+                }
+            }else if(parteCapitulo.getNombreParte().equals("animador")){
+                if(parteCapitulo.getCantidadProducida() <= 3){
+                    proceder = false;
+                    break;
+                }
+            }else if(parteCapitulo.getNombreParte().equals("doblaje")){
+                if(parteCapitulo.getCantidadProducida() <= 5){
+                    proceder = false;
+                    break;
+                }
+            }else if(parteCapitulo.getNombreParte().equals("twist")){
+                if(parteCapitulo.getCantidadProducida() <= 4){
+                    proceder = false;
+                    break;
+                }
+            }
+        }
+        return proceder;
+    }
+    
+    
+    
+    
+    
+    public void producirCapituloNormalNick(){
         for(ParteDrive parteCapitulo : getSeccionesDrive()){
             if(parteCapitulo.getNombreParte().equals("guion")){
                 parteCapitulo.setCantidadProducida(parteCapitulo.getCantidadProducida() - 2);
@@ -105,7 +174,7 @@ public class Drive {
         }
     }
     
-    public void producirCapituloTwist(){
+    public void producirCapituloTwistNick(){
         for(ParteDrive parteCapitulo : getSeccionesDrive()){
             if(parteCapitulo.getNombreParte().equals("guion")){
                 parteCapitulo.setCantidadProducida(parteCapitulo.getCantidadProducida() - 2);
@@ -122,6 +191,46 @@ public class Drive {
             this.capituloTwist ++;
         }
     }
+    
+    
+    public void producirCapituloNormalStarChannel(){
+        for(ParteDrive parteCapitulo : getSeccionesDrive()){
+            if(parteCapitulo.getNombreParte().equals("guion")){
+                parteCapitulo.setCantidadProducida(parteCapitulo.getCantidadProducida() - 2);
+            }else if(parteCapitulo.getNombreParte().equals("diseño")){
+                parteCapitulo.setCantidadProducida(parteCapitulo.getCantidadProducida() - 3);
+            }else if(parteCapitulo.getNombreParte().equals("animador")){
+                parteCapitulo.setCantidadProducida(parteCapitulo.getCantidadProducida() - 4);
+            }else if(parteCapitulo.getNombreParte().equals("doblaje")){
+                parteCapitulo.setCantidadProducida(parteCapitulo.getCantidadProducida() - 6);
+            }
+            
+            this.capituloNormal ++;
+        }
+    }
+    
+    public void producirCapituloTwistStarChannel(){
+        for(ParteDrive parteCapitulo : getSeccionesDrive()){
+            if(parteCapitulo.getNombreParte().equals("guion")){
+                parteCapitulo.setCantidadProducida(parteCapitulo.getCantidadProducida() - 2);
+            }else if(parteCapitulo.getNombreParte().equals("diseño")){
+                parteCapitulo.setCantidadProducida(parteCapitulo.getCantidadProducida() - 3);
+            }else if(parteCapitulo.getNombreParte().equals("animador")){
+                parteCapitulo.setCantidadProducida(parteCapitulo.getCantidadProducida() - 4);
+            }else if(parteCapitulo.getNombreParte().equals("doblaje")){
+                parteCapitulo.setCantidadProducida(parteCapitulo.getCantidadProducida() - 6);
+            }else if(parteCapitulo.getNombreParte().equals("twist")){
+                parteCapitulo.setCantidadProducida(parteCapitulo.getCantidadProducida() - 5);
+            }
+            
+            this.capituloTwist ++;
+        }
+    }
+    
+    
+    
+    
+    
     
     public int getCantidadTotalCapitulos(){
         int totalCaps = this.capituloNormal + this.capituloTwist;

@@ -30,11 +30,12 @@ public class Trabajador extends Thread{
         this.parteProducida = tipo;
         this.pagoTotal = 0;
         this.produccionAcc = 0;
-        this.inicializarTrabajadorPorTipo();
+        this.inicializarTrabajadorPorTipoNick();
+        this.inicializarTrabajadorPorTipoStarChannel();
     
     }
     
-    public void inicializarTrabajadorPorTipo(){
+    public void inicializarTrabajadorPorTipoNick(){
         if(this.parteProducida.equals("guion")){
             this.dolarHora = 20;
             this.produccionDiaria = 0.33;
@@ -63,6 +64,39 @@ public class Trabajador extends Thread{
         setEnsamblador(false);
     
     }
+    
+    
+    public void inicializarTrabajadorPorTipoStarChannel(){
+        if(this.parteProducida.equals("guion")){
+            this.dolarHora = 20;
+            this.produccionDiaria = 0.25;
+        }else if(this.parteProducida.equals("diseño")){
+            this.dolarHora = 26;
+            this.produccionDiaria = 0.25;
+        }else if(this.parteProducida.equals("animador")){
+            this.dolarHora = 40;
+            this.produccionDiaria = 1;
+        }else if(this.parteProducida.equals("doblaje")){
+            this.dolarHora = 16;
+            this.produccionDiaria = 5;
+        }else if(this.parteProducida.equals("twist")){
+            this.dolarHora = 34;
+            this.produccionDiaria = 0.5;
+        }else if(this.parteProducida.equals("ensamblador")){
+            this.dolarHora = 50;
+            this.produccionDiaria = 0.5;
+            this.ensamblador = true;
+        }else{
+            this.dolarHora = 0;
+            this.produccionDiaria = 0;
+        }
+        
+        setProduccionAcc(0);
+        setEnsamblador(false);
+    
+    }
+    
+        
     
     public void pagarTrabajadorDia(){
         this.pagoTotal += getDolarHora() *24;
