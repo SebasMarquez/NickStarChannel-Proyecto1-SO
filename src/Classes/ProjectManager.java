@@ -8,6 +8,7 @@ package Classes;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import nickstarchannel.Main;
 
 /**
  *
@@ -59,7 +60,9 @@ public class ProjectManager extends Thread {
                 setPmEstado("Trabajando");
             }else{
                 setPmEstado("Viendo anime");
-                // AQUI AUN FALTA AÑADIR CUANDO EL DIRECTOR LE PONE LAS FALTAS
+                if(Main.nick.getDirector().getEstadoDirector().equals("Vigilando PM")){
+                    Main.nick.getDirector().faltasPm();
+                }
             }
             
             trabajando = !trabajando;

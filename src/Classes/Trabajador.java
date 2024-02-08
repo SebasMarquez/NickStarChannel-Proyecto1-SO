@@ -5,6 +5,10 @@
  */
 package Classes;
 
+import java.util.concurrent.Semaphore;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author SebasBD
@@ -17,17 +21,21 @@ public class Trabajador extends Thread{
     private boolean activo = true;
     private String parteProducida;
     private boolean ensamblador;
+    private String empresa;
+    private Semaphore semaforoprueba = new Semaphore(1);
     
     
-    public Trabajador(String tipo){
+    public Trabajador(String tipo, String empresa){
+        this.empresa = empresa; // Aun no se como gestionar el tema de las productoras
         this.parteProducida = tipo;
         this.pagoTotal = 0;
         this.produccionAcc = 0;
-        this.inicializarTrabajadorPorTipo();
+        this.inicializarTrabajadorPorTipoNick();
+        this.inicializarTrabajadorPorTipoStarChannel();
     
     }
     
-    public void inicializarTrabajadorPorTipo(){
+    public void inicializarTrabajadorPorTipoNick(){
         if(this.parteProducida.equals("guion")){
             this.dolarHora = 20;
             this.produccionDiaria = 0.33;
@@ -57,6 +65,39 @@ public class Trabajador extends Thread{
     
     }
     
+    
+    public void inicializarTrabajadorPorTipoStarChannel(){
+        if(this.parteProducida.equals("guion")){
+            this.dolarHora = 20;
+            this.produccionDiaria = 0.25;
+        }else if(this.parteProducida.equals("diseño")){
+            this.dolarHora = 26;
+            this.produccionDiaria = 0.25;
+        }else if(this.parteProducida.equals("animador")){
+            this.dolarHora = 40;
+            this.produccionDiaria = 1;
+        }else if(this.parteProducida.equals("doblaje")){
+            this.dolarHora = 16;
+            this.produccionDiaria = 5;
+        }else if(this.parteProducida.equals("twist")){
+            this.dolarHora = 34;
+            this.produccionDiaria = 0.5;
+        }else if(this.parteProducida.equals("ensamblador")){
+            this.dolarHora = 50;
+            this.produccionDiaria = 0.5;
+            this.ensamblador = true;
+        }else{
+            this.dolarHora = 0;
+            this.produccionDiaria = 0;
+        }
+        
+        setProduccionAcc(0);
+        setEnsamblador(false);
+    
+    }
+    
+        
+    
     public void pagarTrabajadorDia(){
         this.pagoTotal += getDolarHora() *24;
     }
@@ -69,10 +110,34 @@ public class Trabajador extends Thread{
         if (getProduccionAcc() >= 1){
             int produccion = (int) Math.floor(getProduccionAcc());
             
-            //try{
+            try{
+                semaforoprueba.acquire();
+                System.out.println(getPagoTotal());
+                semaforoprueba.release();
                 
-            //}
+                //setProduccionAcc(0);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Trabajador.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+    }
+    
+    @Override
+    
+    public void run(){
+        while(this.activo){
+            try{
+                producirParteCapitulo();
+                agregarProduccionHoy();
+                pagarTrabajadorDia();
+                
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Trabajador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        }
+    
     }
 
     /**
