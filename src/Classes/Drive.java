@@ -6,6 +6,7 @@
 package Classes;
 
 import java.util.concurrent.Semaphore;
+import nickstarchannel.Main;
 
 /**
  *
@@ -227,11 +228,67 @@ public class Drive {
         }
     }
     
+    public void agregarProduccion(String nombreParte, int produccion, boolean esCapituloTwist){
+        if (nombreParte.equals("")) {
+            return;
+        }
+        
+        int contador = 0;
+        
+        for (ParteDrive seccion : getSeccionesDrive()) {
+            if (seccion.getNombreParte().equals(nombreParte)) {
+                if (seccion.hayEspacioDisponible()) {
+                        // crear capitulo
+                        if (esCapituloTwist) {
+                            if (hayPartesParaCapituloTwistDisponibleNick()) {
+                                producirCapituloTwistNick();
+                                Main.nick.setContadorPlotTwist(0);
+                                //int chapterQty = Integer.parseInt(GlobalUI.getMainPage().getRMDashBoard1().getTwistChapterQty().getText());
+                                //GlobalUI.getMainPage().getRMDashBoard1().getTwistChapterQty().setText(String.valueOf(chapterQty + 1));
+                                Main.nick.getDirector().agregarCapituloTwistNick();
+                            }else{
+                                // agregar nueva parte al drive
+                                seccion.setCantidadProducida(seccion.getCantidadProducida() + produccion);
+                            }
+                        } else {
+                            // normal chapter
+                            if (hayPartesParaCapituloNormalDisponibleNick()) {
+                                 producirCapituloNormalNick();
+                                 //int chapterQty = Integer.parseInt(GlobalUI.getMainPage().getRMDashBoard1().getNormalChapterQty().getText());
+                                 //GlobalUI.getMainPage().getRMDashBoard1().getNormalChapterQty().setText(String.valueOf(chapterQty + 1));
+                                 Main.nick.nuevoCapituloCreado();
+                                 Main.nick.getDirector().agregarCapituloNormalNick();
+                            }else{
+                                // agregar nueva parte al drive
+                                
+                                seccion.setCantidadProducida(seccion.getCantidadProducida() + produccion);
+                            }
+                        }
+                        //getTotalChapters().setText(String.valueOf(section.getProducedQty()));
+                        
+                    //} else {
+                        // add new part to drive
+                        //section.setProducedQty(section.getProducedQty()+production);
+                        //getUiDriveQtyLabels()[count].setText(String.valueOf(section.getProducedQty()));
+                    //}
+                      //  return;
+                }
+                return;
+            }
+            contador++;
+        }
+        System.out.println("no se encontró la sección: "+ nombreParte);
+    }
     
     
     
-    
-    
+    public void mostrarPartesDrive(){
+        System.out.println("Partes Drive:\n");
+        
+        for(int i = 0; i < getSeccionesDrive().length; i++){
+            System.out.println(i+". "+getSeccionesDrive()[i].getNombreParte() + "Producido: " + getSeccionesDrive()[i].getCantidadProducida() + "MAX: "+ getSeccionesDrive()[i].getCapacidadMax());
+        }
+    }
     public int getCantidadTotalCapitulos(){
         int totalCaps = this.capituloNormal + this.capituloTwist;
         return totalCaps;

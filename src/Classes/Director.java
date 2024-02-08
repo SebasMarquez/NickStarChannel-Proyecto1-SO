@@ -116,6 +116,14 @@ public class Director extends Thread{
     public void pagarDirectorDia(){
         setPagoTotal(getPagoTotal() + (getPagoHora() *24) );
     }
+    
+    public void agregarCapituloNormalNick(){
+        setCapitulosNormalesAcc(getCapitulosNormalesAcc()+1);
+    }
+    
+    public void agregarCapituloTwistNick(){
+        setCapitulosTwistAcc(getCapitulosTwistAcc()+1);
+    }
     /**
      * @return the pagoDia
      */

@@ -8,6 +8,7 @@ package Classes;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import nickstarchannel.Main;
 
 /**
  *
@@ -22,16 +23,21 @@ public class Trabajador extends Thread{
     private String parteProducida;
     private boolean ensamblador;
     private String empresa;
-    private Semaphore semaforoprueba = new Semaphore(1);
+    
     
     
     public Trabajador(String tipo, String empresa){
-        this.empresa = empresa; // Aun no se como gestionar el tema de las productoras
         this.parteProducida = tipo;
         this.pagoTotal = 0;
         this.produccionAcc = 0;
+        this.empresa = empresa;
+        if(empresa.equals("nick")){
         this.inicializarTrabajadorPorTipoNick();
+        }else if(empresa.equals("star")){
         this.inicializarTrabajadorPorTipoStarChannel();
+        }
+        
+        
     
     }
     
@@ -106,21 +112,40 @@ public class Trabajador extends Thread{
         this.produccionAcc += getProduccionDiaria();
     }
     
-    public void agregarProduccionHoy(){
+    public void agregarProduccionHoyNick(){
         if (getProduccionAcc() >= 1){
             int produccion = (int) Math.floor(getProduccionAcc());
             
             try{
-                semaforoprueba.acquire();
-                System.out.println(getPagoTotal());
-                semaforoprueba.release();
+                Main.nick.getSemaforo().acquire();// aqui poner el otro semaforo de
+                Main.nick.getDrive().agregarProduccion(parteProducida, produccion, Main.nick.esElSiguienteCapituloPlotTwist());
+                Main.nick.getSemaforo().release();
                 
-                //setProduccionAcc(0);
+                setProduccionAcc(0);
+                
             } catch (InterruptedException ex) {
                 Logger.getLogger(Trabajador.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
+    // EN ESTA FUNCION SOLO TIENES QUE CAMBIAR EL nick por el nombre de Star que vas a inicializar en el main
+    //
+    //public void agregarProduccionHoyStar(){
+      //  if (getProduccionAcc() >= 1){
+        //    int produccion = (int) Math.floor(getProduccionAcc());
+            
+            //try{
+                //Main.nick.getSemaforo().acquire();// aqui poner el otro semaforo de
+                //Main.nick.getDrive().agregarProduccion(parteProducida, produccion, Main.nick.esElSiguienteCapituloPlotTwist());
+                //Main.nick.getSemaforo().release();
+                
+            //    setProduccionAcc(0);
+                
+            //} catch (InterruptedException ex) {
+              //  Logger.getLogger(Trabajador.class.getName()).log(Level.SEVERE, null, ex);
+          //  }
+        //}
+    //}
     
     @Override
     
@@ -128,10 +153,10 @@ public class Trabajador extends Thread{
         while(this.activo){
             try{
                 producirParteCapitulo();
-                agregarProduccionHoy();
+                agregarProduccionHoyNick();
                 pagarTrabajadorDia();
                 
-                Thread.sleep(1000);
+                Thread.sleep(Main.nick.getDuracionDia());
             } catch (InterruptedException ex) {
                 Logger.getLogger(Trabajador.class.getName()).log(Level.SEVERE, null, ex);
             }
