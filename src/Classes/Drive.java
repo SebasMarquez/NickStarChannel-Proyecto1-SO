@@ -14,14 +14,18 @@ import java.util.concurrent.Semaphore;
 public class Drive {
     private ParteDrive [] seccionesDrive;
     private Semaphore driveSemaphore = new Semaphore(1);
-    private int capituloNormal;
-    private int capituloTwist;
+    private int capituloNormalNick;
+    private int capituloTwistNick;
+    private int capituloNormalStarChannel;
+    private int capituloTwistStarChannel;
     
     
     public Drive (ParteDrive[] parametrosActuales){
         this.seccionesDrive = parametrosActuales;
-        this.capituloNormal = 0;
-        this.capituloTwist = 0;
+        this.capituloNormalNick = 0;
+        this.capituloTwistNick = 0;
+        this.capituloNormalStarChannel = 0;
+        this.capituloTwistStarChannel = 0;
     
     }
     
@@ -170,7 +174,7 @@ public class Drive {
                 parteCapitulo.setCantidadProducida(parteCapitulo.getCantidadProducida() - 4);
             }
             
-            this.capituloNormal ++;
+            this.capituloNormalNick ++;
         }
     }
     
@@ -188,7 +192,7 @@ public class Drive {
                 parteCapitulo.setCantidadProducida(parteCapitulo.getCantidadProducida() - 2);
             }
             
-            this.capituloTwist ++;
+            this.capituloTwistNick ++;
         }
     }
     
@@ -205,7 +209,7 @@ public class Drive {
                 parteCapitulo.setCantidadProducida(parteCapitulo.getCantidadProducida() - 6);
             }
             
-            this.capituloNormal ++;
+            this.capituloNormalStarChannel ++;
         }
     }
     
@@ -223,7 +227,7 @@ public class Drive {
                 parteCapitulo.setCantidadProducida(parteCapitulo.getCantidadProducida() - 5);
             }
             
-            this.capituloTwist ++;
+            this.capituloTwistStarChannel ++;
         }
     }
     
@@ -232,10 +236,18 @@ public class Drive {
     
     
     
-    public int getCantidadTotalCapitulos(){
-        int totalCaps = this.capituloNormal + this.capituloTwist;
-        return totalCaps;
+    public int getCantidadTotalCapitulosNick(){
+        int totalCapsNick = this.capituloNormalNick + this.capituloTwistNick;
+        return totalCapsNick;
     }
+    
+    
+    public int getCantidadTotalCapitulosStarChannel(){
+        int totalCapsStarChannel = this.capituloNormalStarChannel + this.capituloTwistStarChannel;
+        return totalCapsStarChannel;
+    }
+    
+    
 
     /**
      * @return the seccionesDrive
@@ -268,30 +280,57 @@ public class Drive {
     /**
      * @return the capituloNormal
      */
-    public int getCapituloNormal() {
-        return capituloNormal;
+    public int getCapituloNormalNick() {
+        return capituloNormalNick;
     }
 
     /**
      * @param capituloNormal the capituloNormal to set
      */
-    public void setCapituloNormal(int capituloNormal) {
-        this.capituloNormal = capituloNormal;
+    public void setCapituloNormalNick(int capituloNormalNick) {
+        this.capituloNormalNick = capituloNormalNick;
     }
 
     /**
      * @return the capituloTwist
      */
-    public int getCapituloTwist() {
-        return capituloTwist;
+    public int getCapituloTwistNick() {
+        return capituloTwistNick;
     }
 
     /**
      * @param capituloTwist the capituloTwist to set
      */
-    public void setCapituloTwist(int capituloTwist) {
-        this.capituloTwist = capituloTwist;
+    public void setCapituloTwistNick(int capituloTwistNick) {
+        this.capituloTwistNick = capituloTwistNick;
     }
     
     
+    
+    
+    
+    public int getCapituloNormalStarChannel() {
+        return capituloNormalStarChannel;
+    }
+
+    /**
+     * @param capituloNormal the capituloNormal to set
+     */
+    public void setCapituloNormalStarChannel(int capituloNormalStarChannel) {
+        this.capituloNormalStarChannel = capituloNormalStarChannel;
+    }
+
+    /**
+     * @return the capituloTwist
+     */
+    public int getCapituloTwistStarChannel() {
+        return capituloTwistStarChannel;
+    }
+
+    /**
+     * @param capituloTwist the capituloTwist to set
+     */
+    public void setCapituloTwistStarChannel(int capituloTwistStarChannel) {
+        this.capituloTwistStarChannel = capituloTwistStarChannel;
+    }
 }
