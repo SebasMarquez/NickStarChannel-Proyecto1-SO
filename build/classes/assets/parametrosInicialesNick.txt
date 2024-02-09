@@ -1,6 +1,0 @@
-guion,0,25,1
-diseño,0,20,1
-animador,0,55,1
-doblaje,0,35,1
-twist,0,10,1
-ensamblador,0,100000,1

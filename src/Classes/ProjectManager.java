@@ -21,7 +21,7 @@ public class ProjectManager extends Thread {
     private String pmEstado;
     private int faltas;
     private boolean activo = true;
-   
+    private Semaphore counterMutex = new Semaphore(1);
     
     
     public ProjectManager(int diasParaPublicar){
@@ -40,13 +40,13 @@ public class ProjectManager extends Thread {
     public void actualizarContador(){
         try{
             setPmEstado("cambiando contador");
-            Main.nick.getSemaforo().acquire();
+            counterMutex.acquire();
             setPmEstado("cambiando contador");
-            sleep(Main.nick.getDuracionDia()/3); // 8 hours
+            sleep(1000/3); // 8 hours
             setDiasParaPublicar(getDiasParaPublicar()-1);
             String newValue = (String.valueOf(getDiasParaPublicar())+" días");
             
-            Main.nick.getSemaforo().release();
+            counterMutex.release();
         } catch (InterruptedException ex) {
             Logger.getLogger(ProjectManager.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -67,7 +67,7 @@ public class ProjectManager extends Thread {
             
             trabajando = !trabajando;
             try{
-                sleep(Main.nick.getDuracionDia()/480);
+                sleep(1000/480);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ProjectManager.class.getName()).log(Level.SEVERE, null, ex);
             }

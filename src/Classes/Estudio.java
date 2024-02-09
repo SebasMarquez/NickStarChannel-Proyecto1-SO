@@ -11,7 +11,7 @@ import java.util.concurrent.Semaphore;
  *
  * @author SebasBD
  */
-public class StarChannel extends Thread{
+public class Estudio extends Thread{
     private Trabajador [] trabajadores;
     private int contadorPlotTwist;
     private int duracionDia;
@@ -23,19 +23,12 @@ public class StarChannel extends Thread{
     private Director director;
     private boolean activo = true;
     
-    public StarChannel(int duracionDia, int diasLanzamiento){
+    public Estudio(int duracionDia, int diasLanzamiento){
         this.duracionDia = duracionDia;
         this.diasLanzamiento = diasLanzamiento;
         this.director = new Director(diasLanzamiento);
         this.pm = new ProjectManager(diasLanzamiento);
     }
-    
-    
-    public boolean esElSiguienteCapituloPlotTwist(){
-        return (getContadorPlotTwist() >= 6);
-    }
-    
-    
     public void print(){
         getDirector().getEstadoDirector();
     }
