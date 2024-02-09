@@ -227,6 +227,56 @@ public class Drive {
         }
     }
     
+<<<<<<< HEAD
+=======
+    public void agregarProduccion(String nombreParte, int produccion, boolean esCapituloTwist){
+        if (nombreParte.equals("")) {
+            return;
+        }
+        
+        int contador = 0;
+        
+        for (ParteDrive seccion : getSeccionesDrive()) {
+            if (seccion.getNombreParte().equals(nombreParte)) {
+                if (seccion.hayEspacioDisponible()) {
+                        // crear capitulo
+                        if (esCapituloTwist) {
+                            if (hayPartesParaCapituloTwistDisponibleNick()) {
+                                producirCapituloTwistNick();
+                                Main.nick.setContadorPlotTwist(0);
+                                Main.nick.getDirector().agregarCapituloTwistNick();
+                            }else{
+                                // agregar nueva parte al drive
+                                seccion.setCantidadProducida(seccion.getCantidadProducida() + produccion);
+                            }
+                        } else {
+                            // normal chapter
+                            if (hayPartesParaCapituloNormalDisponibleNick()) {
+                                 producirCapituloNormalNick();
+                                 Main.nick.nuevoCapituloCreado();
+                                 Main.nick.getDirector().agregarCapituloNormalNick();
+                            }else{
+                                // agregar nueva parte al drive
+                                
+                                seccion.setCantidadProducida(seccion.getCantidadProducida() + produccion);
+                            }
+                        }
+                        //getTotalChapters().setText(String.valueOf(section.getProducedQty()));
+                        
+                    //} else {
+                        // add new part to drive
+                        //section.setProducedQty(section.getProducedQty()+production);
+                        //getUiDriveQtyLabels()[count].setText(String.valueOf(section.getProducedQty()));
+                    //}
+                      //  return;
+                }
+                return;
+            }
+            contador++;
+        }
+        System.out.println("no se encontró la sección: "+ nombreParte);
+    }
+>>>>>>> parent of dbe4faa (Commit final final)
     
     
     
