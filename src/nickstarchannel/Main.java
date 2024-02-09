@@ -9,6 +9,7 @@ import Classes.Director;
 import Classes.Nickelodeon;
 import Classes.FuncionesTXT;
 import Classes.ProjectManager;
+import Classes.StarChannel;
 import Classes.Trabajador;
 
 /**
@@ -17,6 +18,7 @@ import Classes.Trabajador;
  */
 public class Main {
     public static Nickelodeon nick = new Nickelodeon(1000, 5);
+    public static StarChannel star = new StarChannel(1000, 5);
     /**
      * @param args the command line arguments
      */

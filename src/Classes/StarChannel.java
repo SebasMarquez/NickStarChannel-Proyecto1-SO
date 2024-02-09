@@ -29,6 +29,13 @@ public class StarChannel extends Thread{
         this.director = new Director(diasLanzamiento);
         this.pm = new ProjectManager(diasLanzamiento);
     }
+    
+    
+    public boolean esElSiguienteCapituloPlotTwist(){
+        return (getContadorPlotTwist() >= 6);
+    }
+    
+    
     public void print(){
         getDirector().getEstadoDirector();
     }

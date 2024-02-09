@@ -243,8 +243,6 @@ public class Drive {
                             if (hayPartesParaCapituloTwistDisponibleNick()) {
                                 producirCapituloTwistNick();
                                 Main.nick.setContadorPlotTwist(0);
-                                //int chapterQty = Integer.parseInt(GlobalUI.getMainPage().getRMDashBoard1().getTwistChapterQty().getText());
-                                //GlobalUI.getMainPage().getRMDashBoard1().getTwistChapterQty().setText(String.valueOf(chapterQty + 1));
                                 Main.nick.getDirector().agregarCapituloTwistNick();
                             }else{
                                 // agregar nueva parte al drive
@@ -254,8 +252,6 @@ public class Drive {
                             // normal chapter
                             if (hayPartesParaCapituloNormalDisponibleNick()) {
                                  producirCapituloNormalNick();
-                                 //int chapterQty = Integer.parseInt(GlobalUI.getMainPage().getRMDashBoard1().getNormalChapterQty().getText());
-                                 //GlobalUI.getMainPage().getRMDashBoard1().getNormalChapterQty().setText(String.valueOf(chapterQty + 1));
                                  Main.nick.nuevoCapituloCreado();
                                  Main.nick.getDirector().agregarCapituloNormalNick();
                             }else{

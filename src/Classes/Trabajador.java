@@ -128,24 +128,23 @@ public class Trabajador extends Thread{
             }
         }
     }
-    // EN ESTA FUNCION SOLO TIENES QUE CAMBIAR EL nick por el nombre de Star que vas a inicializar en el main
-    //
-    //public void agregarProduccionHoyStar(){
-      //  if (getProduccionAcc() >= 1){
-        //    int produccion = (int) Math.floor(getProduccionAcc());
+    
+    public void agregarProduccionHoyStar(){
+        if (getProduccionAcc() >= 1){
+            int produccion = (int) Math.floor(getProduccionAcc());
             
-            //try{
-                //Main.nick.getSemaforo().acquire();// aqui poner el otro semaforo de
-                //Main.nick.getDrive().agregarProduccion(parteProducida, produccion, Main.nick.esElSiguienteCapituloPlotTwist());
-                //Main.nick.getSemaforo().release();
+            try{
+                Main.star.getSemaforo().acquire();// aqui poner el otro semaforo de
+                Main.star.getDrive().agregarProduccion(parteProducida, produccion, Main.star.esElSiguienteCapituloPlotTwist());
+                Main.star.getSemaforo().release();
                 
-            //    setProduccionAcc(0);
+                setProduccionAcc(0);
                 
-            //} catch (InterruptedException ex) {
-              //  Logger.getLogger(Trabajador.class.getName()).log(Level.SEVERE, null, ex);
-          //  }
-        //}
-    //}
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Trabajador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
     
     @Override
     
