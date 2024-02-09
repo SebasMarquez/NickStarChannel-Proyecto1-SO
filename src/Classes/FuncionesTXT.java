@@ -62,14 +62,12 @@ public class FuncionesTXT {
         valores[0] = Integer.parseInt(split[0].replace("\n",""));
         valores[1] = Integer.parseInt(split[1].replace("\n",""));
         
-        //String nuevoValor = (String.valueOf(valores[1])+" días"); //Aun no se si es necesaria
         return valores;
     }
     
     public static ParteDrive [] cargarParametrosInicialesEstudio(String direccion){
         ParteDrive [] parametros = new ParteDrive[6];
         String data = cargarTextoDesdeFile(direccion);
-        //System.out.println(data);
         String [] split = data.split("\n");
         for(int i = 0; i < split.length; i++){
             String[] parteParametros = split[i].split(",");
