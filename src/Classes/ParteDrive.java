@@ -13,14 +13,25 @@ public class ParteDrive {
     private int cantidadProducida;
     private int capacidadMax;
     private String nombreParte;
+    private int cantidadTrabajadoresIniciales;
     
     
-    public ParteDrive(int cantidadProducida, int capacidadMax, String nombreParte){
+    public ParteDrive( String nombreParte, int cantidadProducida, int capacidadMax, int cantidadTrabajadoresIniciales){
         this.cantidadProducida = cantidadProducida;
         this.capacidadMax = capacidadMax;
         this.nombreParte = nombreParte;
+        this.cantidadTrabajadoresIniciales = cantidadTrabajadoresIniciales;
     }
-
+    
+    public boolean hayEspacioDisponible(){
+        if(getCantidadProducida() <= getCapacidadMax()){
+            return true;
+        
+        }else{
+            return false;
+        }
+        
+    }
     /**
      * @return the cantidadProducida
      */
@@ -61,5 +72,19 @@ public class ParteDrive {
      */
     public void setNombreParte(String nombreParte) {
         this.nombreParte = nombreParte;
+    }
+
+    /**
+     * @return the cantidadTrabajadoresIniciales
+     */
+    public int getCantidadTrabajadoresIniciales() {
+        return cantidadTrabajadoresIniciales;
+    }
+
+    /**
+     * @param cantidadTrabajadoresIniciales the cantidadTrabajadoresIniciales to set
+     */
+    public void setCantidadTrabajadoresIniciales(int cantidadTrabajadoresIniciales) {
+        this.cantidadTrabajadoresIniciales = cantidadTrabajadoresIniciales;
     }
 }
